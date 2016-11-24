@@ -1,0 +1,17 @@
+<h2>Création d'un album</h2>
+
+<div id="formDiv">
+  <form name="albumForm" ng-submit="formCtrl.createAlbum(albumForm, album)" novalidate>
+    <div><label>Title <input name="title" ng-model="album.title" required></label></div>
+    <div><label>Artist <input name="artist" ng-model="album.artist" ng-minlength="3" ng-maxlength="20"></label></div>
+    <div><label>Year <input type="number" name="year" ng-model="album.year" ng-min="1900" ng-max="2017"></label></div>
+
+    <div ng-if="albumForm.description.$error.pattern">Ce champ doit commencer par un p</div>
+    <div><label>Description <textarea name="description" ng-model="album.description" ng-pattern="/^p/"></textarea></label></div>
+    <div><label>Duration <input type="number" name="duration" ng-model="album.duration"></label></div>
+    <div><label>Email <input type="email" name="email" ng-model="album.email"></label></div>
+    <div><label>Live <input type="checkbox" name="live" ng-model="album.live"></label></div>
+    <div><label>Genre <select name="genre" ng-model="album.genre" ng-options="genre for genre in formCtrl.genres"></select></label></div>
+    <div><input type="submit" ng-disabled="albumForm.$invalid"></div>
+  </form>
+</div>

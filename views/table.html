@@ -1,0 +1,48 @@
+<h2>Liste d'albums</h2>
+<hr>
+<input type="text" ng-model="tableCtrl.filter.$" placeholder="Type to filter">
+<hr>
+<input type="text" ng-model="tableCtrl.gravatarSize" placeholder="Gravatar Size">
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th ng-repeat="key in tableCtrl.albumKeys" ng-click="tableCtrl.sort(key)">
+        <span ng-if="key == tableCtrl.order && !tableCtrl.reverse">▲</span>
+        {{key}}
+        <span ng-if="key == tableCtrl.order && tableCtrl.reverse">▼</span>
+      </th>
+    </tr>
+    <tr>
+      <td ng-repeat="key in tableCtrl.albumKeys">
+        <input type="text" ng-model="tableCtrl.filter[key]" placeholder="Filter column">
+      </td>
+    </tr>
+  </thead>
+  <tfoot style="display: table-row-group">
+    <tr>
+      <td>gravatar</td>
+      <td ng-repeat="key in tableCtrl.albumKeys">
+        <span ng-switch="key">
+          <span ng-switch-when="year">{{ tableCtrl.albums | pluck:key | average }}</span>
+          <span ng-switch-when="duration">{{ tableCtrl.albums | pluck:key | average }}</span>
+          <span ng-switch-default></span>
+        </span>
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr ng-repeat="album in tableCtrl.albums | orderBy:tableCtrl.order:tableCtrl.reverse | filter:tableCtrl.filter track by album.id">
+      <td><gravatar email="{{ album.email }}" size="tableCtrl.gravatarSize">toto</gravatar></td>
+      <td ng-repeat="key in tableCtrl.albumKeys">
+        <span ng-switch="key">
+          <a ng-switch-when="title" href="/#/article/{{ album.id }}">{{ album[key] | uppercase }}</a>
+          <span ng-switch-when="initials">{{ album[key] | initials }}</span>
+          <span ng-switch-when="description">{{ album[key] }}</span>
+          <span ng-switch-default>{{ album[key] }}</span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

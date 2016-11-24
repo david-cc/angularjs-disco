@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Disco</title>
+  <style>
+    #formDiv {
+      width: 500px;
+    }
+    #formDiv input {
+      float: rigth;
+      clear: both;
+    }
+    form .ng-valid {
+      background: green;
+    }
+    form .ng-invalid {
+      background: red;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: inline;
+      padding: 10px;
+      background: #cccccc;
+    }
+    li a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#/">Accueil</a></li>
+      <li><a href="#/table">Liste des albums</a></li>
+      <li><a href="#/form">Créer un album</a></li>
+    </ul>
+  </nav>
+
+  <div ng-view></div>
+
+  <script src="js/vendors/angular.js"></script>
+  <script src="js/vendors/angular-messages.js"></script>
+  <script src="js/vendors/angular-route.js"></script>
+  <script src="js/vendors/chance.js"></script>
+  <script src="js/vendors/md5.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/route.js"></script>
+
+  <script src="js/controllers/articleCtrl.js"></script>
+  <script src="js/controllers/formCtrl.js"></script>
+  <script src="js/controllers/homeCtrl.js"></script>
+  <script src="js/controllers/tableCtrl.js"></script>
+
+  <script src="js/directive/gravatar.js"></script>
+
+  <script src="js/services/albumSvc.js"></script>
+  <script src="js/services/genreSvc.js"></script>
+
+  <script src="js/filters/filters.js"></script>
+</body>
+</html>
